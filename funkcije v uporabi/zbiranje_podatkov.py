@@ -111,7 +111,7 @@ def main():
     # Časovno obdobje (zadnjih 25 let)
     danes = datetime.now()
     end_date = danes.strftime("%Y-%m-%d")
-    start_date = (danes.replace(year=danes.year - 25)).strftime("%Y-%m-%d")
+    start_date = ("2000-01-01")
     
     # Progress bar:
     with tqdm(kraji.items(), desc="Pridobivanje podatkov") as pbar:
