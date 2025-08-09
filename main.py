@@ -1,77 +1,28 @@
-# Uvoz potrebnih knjižnic
-import pandas as pd  # Za tabele
-import os  # Za ustvarjanje map
-from datetime import datetime  # Za datume
-from tqdm import tqdm  # Za progress bar
-import sys
-from pathlib import Path
-
-import os
-import sys
-from pathlib import Path
-
-# 1. Nastavitev poti (že deluje)
-current_dir = Path(__file__).parent
-functions_dir = current_dir / "funkcije"
-sys.path.insert(0, str(functions_dir))
-# 2. Dodajanje poti v sys.path
-sys.path.insert(0, str(current_dir))
-sys.path.insert(0, str(functions_dir))
-
-
-from pridobi_in_shrani_podatke import pridobi_podatke, shrani_podatke
-from nalaganje import nalozi_vse_podatke
-    
-
-# Slovenski kraji z njihovimi koordinatami (zemljepisna širina in dolžina)
-# Izbranih je 10 reprezentativnih mest iz različnih delov Slovenije
-kraji = {
-    "Koper": (45.5481, 13.7302),      # Primorska
-    "Ljubljana": (46.0569, 14.5058),  # Osrednja Slovenija
-    "Maribor": (46.5547, 15.6459),    # Štajerska
-    "Bled": (46.3692, 14.1136),       # Gorenjska
-    "Novo_mesto": (45.8000, 15.1667), # Dolenjska
-    "Murska_Sobota": (46.6586, 16.1594), # Pomurska
-    "Celje": (46.2309, 15.2604),      # Savinjska
-    "Nova_Gorica": (45.9558, 13.6433), # Goriška
-    "Krško": (45.9500, 15.4833),      # Posavje
-    "Slovenj_Gradec": (46.5100, 15.0800) # Koroška
-}
+from datetime import datetime
+from meteostat_podatki import pridobi_podatke_za_lokacije
 
 def main():
-    """
-    Glavna funkcija, ki koordinira pridobivanje in shranjevanje podatkov.
-    """
-    # Ustvarimo glavno mapo
-    os.makedirs("podatki", exist_ok=True)
-    
-    # Časovno obdobje (zadnjih 25 let)
-    danes = datetime.now()
-    end_date = danes.strftime("2024-12-31")
-    start_date = ("2000-01-01")
-    
-    # Progress bar:
-    with tqdm(kraji.items(), desc="Pridobivanje podatkov") as pbar:
-        for kraj, (lat, lon) in pbar:
-            # Posodobimo opis v napredku s trenutnim krajem
-            pbar.set_postfix_str(kraj)
-            # Pridobimo podatke za trenutni kraj
-            podatki = pridobi_podatke(lat, lon, start_date, end_date)
-            # Shranimo podatke
-            if podatki:
-                shrani_podatke(kraj, podatki)
-            # Refresh
-            pbar.update()
-    # Ob zaključku pošljemo sporočilo
-    sporocilo = f"""
-    Uspešno shranjeni podatki:
-    {'- Obdelanih krajev:':<25} {len(kraji):<23}
-    {'- Časovno obdobje:':<25} {25} let{'':<18}
-    {'- Lokacija shranjevanja:':<25} {"podatki":<23}
-    """
-    print(sporocilo)
+    lokacije = [
+        {'ime': 'Ljubljana', 'lat': 46.05, 'lon': 14.51},
+        {'ime': 'Reykjavik', 'lat': 64.13, 'lon': -21.82},
+        {'ime': 'Singapore', 'lat': 1.35, 'lon': 103.86},
+        {'ime': 'Sydney', 'lat': -33.87, 'lon': 151.21},
+        {'ime': 'Tokyo', 'lat': 35.68, 'lon': 139.77},
+        {'ime': 'Barrow', 'lat': 71.29, 'lon': -156.79},
+        {'ime': 'Cairo', 'lat': 30.04, 'lon': 31.24},
+        {'ime': 'Buenos_Aires', 'lat': -34.60, 'lon': -58.38},
+        {'ime': 'Cape_Town', 'lat': -33.92, 'lon': 18.42},
+        {'ime': 'Mumbai', 'lat': 19.08, 'lon': 72.88}
+    ]
 
+    zacetek = datetime(2000, 1, 1)
+    konec = datetime(2023, 12, 31)
 
-# Zagotovimo, da se glavna funkcija izvede samo, če skripto poženemo neposredno
+    uspeh, neuspeh = pridobi_podatke_za_lokacije(lokacije, zacetek, konec)
+
+    print(f"\n✅ Uspešno pridobljeni podatki za: {uspeh} lokacij.")
+    print(f"❌ Ni podatkov za: {neuspeh} lokacij.")
+    print("Pridobivanje podatkov končano!")
+
 if __name__ == "__main__":
     main()
