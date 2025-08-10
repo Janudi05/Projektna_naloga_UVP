@@ -1,55 +1,59 @@
-# Analiza temperatur v Sloveniji
+# Analiza globalnih temperaturnih trendov
 
-Ta projekt izvaja zajem in obdelavo temperaturnih podatkov za 10 slovenskih mest s pomočjo Open-Meteo API-ja. Cilj je analizirati temperaturno zgodovino (2000-2025) po mestih, letnih časih in regijah ter identificirati podnebne trende.
+Ta projekt pridobiva in analizira zgodovinske (1950 - 2024) podnebne podatke za različna mesta po svetu. 
+Glavni cilj je analizirati trende segrevanja v različnih klimatskih pasovih ter vizualizirati rezultate.
 
-Projektna naloga zajema:
-- Pridobivanje zgodovinskih podatkov o temperaturah iz Open-Meteo API-ja
-- Shranjevanje podatkov za zadnjih 25 let za 10 slovenskih mest
-- Organizacija podatkov v mapah za nadaljno analizo
+### Projektna naloga zajema:
+  -  Pridobivanje podatkov: Skripti za pridobivanje podatkov iz Meteostat API.
 
-## Viri podatkov
-- Open-Meteo API za zgodovinske vremenske podatke
-- Geodetska uprava RS za koordinate mest
-- ARSO za validacijo podatkov
+  -  Analiza podatkov: Obdelava in statistična analiza podnebnih podatkov.
 
-## Cilj projekta
-Analizirati temperaturno zgodovino (2000-2025) po mestih, letnih časih in regijah ter identificirati podnebne trende.
+  -  Vizualizacija: Grafični prikaz rezultatov analize.
 
-## Struktura projekta
+### Cilj projekta
+Analizirati temperaturno zgodovino (1950 - 2024) po mestih, letnih časih in regijah ter identificirati podnebne trende.
 
+### Struktura projekta
+```
 Projektna_naloga_UVP/  
-    │ 
-    ├── pridobi_podatke/  
-    │   ├── __init__.py  
-    │   ├── api_klice.py  
-    │   ├── obdelava_podatkov.py  
-    │   └── shranjevanje.py  
-    ├── podatki/  
-    │   ├── Koper/  
-    │   │   ├── 2020/  
-    │   │   │   ├── 01.csv  
-    │   │   │   └── ...  
-    │   │   └── ...  
-    │   ├── Ljubljana/  
-    │   └── ...  
-    ├── vizualizacije/  
-    │   ├── letni_trendi.png  
-    │   ├── mesecne_razlike.png  
-    │   └── ...  
-    ├── analiza.ipynb  
-    ├── config.py  
+    │  
+    ├── Podatki/ 
+    │    ├── ne_predelani/  
+    │    │   └── Tokyo/  
+    │    │   │   ├── Tokyo_1950_temperature.csv  
+    │    │   │   ├── Tokyo_1951_temperature.csv
+    │    │   │   └── ...  
+    │    │   └── Ljubljana/
+    │    │       └── ... 
+    │    └── rezultati/  
+    │        └── ...  
+    ├── __pycache__/
+    │        └── ... 
+    ├── Analiza_podatkov.ipynb  
+    ├── zahteve_namestitev.py  
+    ├── meteostat_podatki.py 
+    ├── requirements.txt
     ├── main.py  
     ├── .gitignore
     └── README.md  
+```
 
-## Uporabljene knjižnice
+### Viri podatkov
+- Open-Meteo API za zgodovinske vremenske podatke:
 
-Uporabnik za zagon programa mora imeti nameščene knjižnice:  
+    https://dev.meteostat.net/python/#installation
 
-- requests         # Za komunikacijo z API
-- pandas           # Za delo s podatki
-- os               # Za datoteke
-- datetime         # Za datume
-- tqdm             # Za progress bar
+- Tehnike analize klimatskih podatkov:
 
-## Zagon projekta
+    https://climatedataguide.ucar.edu/climate-tools
+
+ ### Navodila za uporabo in zagon projekta
+
+ 1. Zaženite notebook: `jupyter notebook Analiza.ipynb`
+ 
+ 2. Namestite vse zahtevane knjižnice: `pip install -r requirements.txt`
+    ali zaženite vse celice (Run All) v notebooku
+
+ 3. Run All
+
+ 4. Rezultati bodo shranjeni v mapo `Podatki/rezultati/`

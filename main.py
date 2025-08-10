@@ -15,14 +15,14 @@ def main():
         {'ime': 'Mumbai', 'lat': 19.08, 'lon': 72.88}
     ]
 
-    zacetek = datetime(2000, 1, 1)
+    zacetek = datetime(1950, 1, 1)
     konec = datetime(2023, 12, 31)
 
     uspeh, neuspeh = pridobi_podatke_za_lokacije(lokacije, zacetek, konec)
 
-    print(f"\n✅ Uspešno pridobljeni podatki za: {uspeh} lokacij.")
-    print(f"❌ Ni podatkov za: {neuspeh} lokacij.")
-    print("Pridobivanje podatkov končano!")
+    print(f"\n Uspešno: {uspeh} lokacij.")
+    print(f" Neuspešno: {neuspeh} lokacij.")
+    print("Končano")
 
 if __name__ == "__main__":
     main()
