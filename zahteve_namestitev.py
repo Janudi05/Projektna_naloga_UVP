@@ -14,7 +14,10 @@ required_packages = {
     'tqdm': 'tqdm>=4.62.0',
     'python-dateutil': 'python-dateutil',
     'pathlib': 'pathlib>=1.0.1',
-    'glob2': 'glob2'
+    'glob2': 'glob2',
+    'time': 'time',
+    'warnings': 'warnings',
+    'logging': 'logging'
 }
 
 def instalacija():
