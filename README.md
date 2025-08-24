@@ -1,19 +1,21 @@
 # Analiza globalnih temperaturnih trendov
+ V tej projektni nalogi sem pridobil in analiziral podnebne podatke za različne lokacije po svetu med letoma 1950 in 2024. Sestavljata jo dva glavna dela:
 
-Ta projekt pridobiva in analizira zgodovinske (1950 - 2024) podnebne podatke za različna mesta po svetu. 
-Glavni cilj je analizirati trende segrevanja v različnih klimatskih pasovih ter vizualizirati rezultate.
+ 1. **Pridobivanje podatkov**: Datoteka Pridobivanje_podatkov.ipynb je program, za pridobivanje podatkov s pomočjo Meteostat API, ki ima vgrajeno python knjižnico.
+ Program jih nato shrani glede na lokacijo in po letih.
+ (Glej strukturo projekta spodaj)
 
-### Projektna naloga zajema:
-  -  Pridobivanje podatkov: Skripti za pridobivanje podatkov iz Meteostat API.
+ 2. **Analiza podatkov**:
+ Analiza se osredotoča na tri glavne metrike:
+ temperaturne trende, ekstreme izmed temperaturnih podatkov in spremembe v količinah padavin.
 
-  -  Analiza podatkov: Obdelava in statistična analiza podnebnih podatkov.
+## Cilj projekta
+1. Analizirati dolgoročne (75 let) trende povprečnih letnih temperatur
+2. Preučiti pojavnost ekstremno toplih in hladnih dni
+3. Raziskati spremembe v količini in distribuciji padavin
+4. Primerjati podnebne spremembe med različnimi geografskimi regijami
 
-  -  Vizualizacija: Grafični prikaz rezultatov analize.
-
-### Cilj projekta
-Analizirati temperaturno zgodovino (1950 - 2024) po mestih, letnih časih in regijah ter identificirati podnebne trende.
-
-### Struktura projekta
+## Struktura projekta
 ```
 Projektna_naloga_UVP/  
     │  
@@ -23,22 +25,22 @@ Projektna_naloga_UVP/
     │    │   │   ├── Tokyo_1950_temperature.csv  
     │    │   │   ├── Tokyo_1951_temperature.csv
     │    │   │   └── ...  
-    │    │   └── Ljubljana/
+    │    │   └── Sydney/
     │    │       └── ... 
     │    └── rezultati/  
-    │        └── ...  
-    ├── __pycache__/
-    │        └── ... 
+    │        ├── povprecne_padavine.png
+    │        └── ...
+    │
     ├── Analiza_podatkov.ipynb  
     ├── zahteve_namestitev.py  
-    ├── meteostat_podatki.py 
-    ├── requirements.txt
-    ├── main.py  
+    ├── Pridobivanje_podatkov.ipynb
+    ├── globus.gif
+    ├── Globus.py
     ├── .gitignore
     └── README.md  
 ```
 
-### Viri podatkov
+## Viri podatkov
 - Open-Meteo API za zgodovinske vremenske podatke:
 
     https://dev.meteostat.net/python/#installation
@@ -47,13 +49,12 @@ Projektna_naloga_UVP/
 
     https://climatedataguide.ucar.edu/climate-tools
 
- ### Navodila za uporabo in zagon projekta
+## Navodila za uporabo in zagon projekta
 
- 1. Zaženite notebook: `jupyter notebook Analiza.ipynb`
+ 1. Klonirajte repozitorij `Projektna_naloga_UVP`.
  
- 2. Namestite vse zahtevane knjižnice: `pip install -r requirements.txt`
-    ali zaženite vse celice (Run All) v notebooku
+ 2. Zaženite notebook: `jupyter notebook Analiza.ipynb`
 
- 3. Run All
+ 3. Kliknite Run All ( ob zagonu bi se vam morale naložiti vse potrebne knjižnice - Prvi Code cell)
 
- 4. Rezultati bodo shranjeni v mapo `Podatki/rezultati/`
+ 4. Rezultati bodo shranjeni v mapo `Podatki/rezultati/` in posredovani kot Markdown outputi.
